@@ -2,6 +2,7 @@ import pygame
 pygame.init()
 font = pygame.font.Font(None, 24)
 
+# Renders inputted debug info to the game screen
 def debug(info, y = 10, x = 10):
     display_surface = pygame.display.get_surface()
     debug_surf = font.render(str(info), True, (255, 255, 255))
