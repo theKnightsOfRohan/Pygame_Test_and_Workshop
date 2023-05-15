@@ -1,13 +1,5 @@
 __pycache__
 *.pyc
-Sounds
 .vscode
-FX
-HUD
-Items
-Musics
-Animated
-*.gif
-Vehicles
-Actor
-*.aseprite
+.DS_Store
+```
