@@ -1,13 +1,15 @@
 import pygame
 from settings import *
+from spritesheet import SpriteSheet
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, tile_type, obstacle_sprites):
         super().__init__(tile_type)
         # Get the drawbox of the sprite
         self.image = pygame.Surface((TILESIZE, TILESIZE))
-        self.image.fill((255, 255, 255))
-        # self.image = pygame.image.load("../assets/player.png").convert_alpha()
+        self.spritesheet = SpriteSheet("assets/Boy/SpriteSheet.png")
+        self.image = self.spritesheet.image_at((0, 0, 16, 16)).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (TILESIZE, TILESIZE))
         # Set the position of the sprite's drawbox
         self.rect = self.image.get_rect(topleft = pos)
         
