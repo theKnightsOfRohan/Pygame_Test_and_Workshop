@@ -10,3 +10,5 @@ class Block(pygame.sprite.Sprite):
         # self.image = pygame.image.load("../assets/tile.png").convert_alpha()
         # Set the position of the sprite's drawbox
         self.rect = self.image.get_rect(topleft = pos)
+        # Set the hitbox of the sprite to be slightly smaller in the Y direction for depth
+        self.hitbox = self.rect.inflate(0, -10)

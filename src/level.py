@@ -38,20 +38,29 @@ class Level:
         # update and draw sprites
         self.visible_sprites.update()
         self.visible_sprites.custom_draw(self.player)
+        debug(self.player.direction)
         
 class YSortCameraGroup(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
+        # get screen dimensions
         self.display_surface = pygame.display.get_surface()
-        self.half_width = self.display_surface.get_width() / 2
-        self.half_height = self.display_surface.get_height() / 2
-        self.offset = pygame.math.Vector2(100, 200)
+        self.half_width = self.display_surface.get_width()/2
+        self.half_height = self.display_surface.get_height()/2
+        
+        #Declares the offset vector (initial values are unimportant)
+        self.offset = pygame.math.Vector2(0, 0)
         
     def custom_draw(self, player):
+        # update offset based on player position
+        # offset centers player on the screen
         self.offset.x = player.rect.centerx - self.half_width
         self.offset.y = player.rect.centery - self.half_height
         
-        for sprite in self.sprites():
+        # draw sprites in order, based on y position
+        # offset_pos is the position of the sprite on the screen
+        # lambda function is used to sort sprites based on y position
+        for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, offset_pos)
             
